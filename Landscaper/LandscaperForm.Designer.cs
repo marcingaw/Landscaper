@@ -23,13 +23,26 @@
         /// jej zawartości w edytorze kodu.
         /// </summary>
         private void InitializeComponent() {
+            this.ReloadBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // ReloadBtn
+            // 
+            this.ReloadBtn.Location = new System.Drawing.Point(13, 13);
+            this.ReloadBtn.Name = "ReloadBtn";
+            this.ReloadBtn.Size = new System.Drawing.Size(75, 43);
+            this.ReloadBtn.TabIndex = 0;
+            this.ReloadBtn.Text = "Reload";
+            this.ReloadBtn.UseVisualStyleBackColor = true;
+            this.ReloadBtn.Click += new System.EventHandler(this.ReloadBtn_Click);
             // 
             // LandscaperForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(900, 562);
+            this.Controls.Add(this.ReloadBtn);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "LandscaperForm";
             this.Text = "Landscaper";
             this.Load += new System.EventHandler(this.LandscaperForm_Load);
@@ -39,6 +52,8 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Button ReloadBtn;
     }
 }
 

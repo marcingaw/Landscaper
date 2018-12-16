@@ -28,11 +28,22 @@ namespace Landscaper {
             Bitmap bm = new Bitmap(w, h);
             for (int x = 0; x < Land.Width && x < w; x++) {
                 for (int y = 0; y < Land.Height && y < h; y++) {
-                    int ph = Land.GetPointHeight(x, y);
-                    bm.SetPixel(x, y, Color.FromArgb(ph, ph, ph));
+                    int ph = Land.GetPointElev(x, y);
+                    if (ph < 64) {
+                        bm.SetPixel(x, y, Color.FromArgb(0, 0, 64 + 2 * ph));
+                    } else if (ph < 192) {
+                        bm.SetPixel(x, y, Color.FromArgb(0, ph, 0));
+                    } else {
+                        bm.SetPixel(x, y, Color.FromArgb(4 * (ph - 192), ph, 4 * (ph - 192)));
+                    }
                 }
             }
             gr.DrawImage(bm, 0, 0);
+        }
+
+        private void ReloadBtn_Click(object sender, EventArgs e) {
+            Land = new Landscape(512, 384, 4, 255);
+            Invalidate();
         }
     }
 }
