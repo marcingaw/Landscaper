@@ -24,6 +24,8 @@
         /// </summary>
         private void InitializeComponent() {
             this.ReloadBtn = new System.Windows.Forms.Button();
+            this.SeaLevelBar = new System.Windows.Forms.TrackBar();
+            ((System.ComponentModel.ISupportInitialize)(this.SeaLevelBar)).BeginInit();
             this.SuspendLayout();
             // 
             // ReloadBtn
@@ -36,24 +38,41 @@
             this.ReloadBtn.UseVisualStyleBackColor = true;
             this.ReloadBtn.Click += new System.EventHandler(this.ReloadBtn_Click);
             // 
+            // SeaLevelBar
+            // 
+            this.SeaLevelBar.Dock = System.Windows.Forms.DockStyle.Right;
+            this.SeaLevelBar.Location = new System.Drawing.Point(609, 0);
+            this.SeaLevelBar.Maximum = 256;
+            this.SeaLevelBar.Name = "SeaLevelBar";
+            this.SeaLevelBar.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.SeaLevelBar.Size = new System.Drawing.Size(69, 644);
+            this.SeaLevelBar.TabIndex = 1;
+            this.SeaLevelBar.Value = 64;
+            this.SeaLevelBar.ValueChanged += new System.EventHandler(this.SeaLevelBar_ValueChanged);
+            // 
             // LandscaperForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 562);
+            this.ClientSize = new System.Drawing.Size(678, 644);
+            this.Controls.Add(this.SeaLevelBar);
             this.Controls.Add(this.ReloadBtn);
+            this.DoubleBuffered = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "LandscaperForm";
             this.Text = "Landscaper";
             this.Load += new System.EventHandler(this.LandscaperForm_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.LandscaperForm_Paint);
+            ((System.ComponentModel.ISupportInitialize)(this.SeaLevelBar)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Button ReloadBtn;
+        private System.Windows.Forms.TrackBar SeaLevelBar;
     }
 }
 

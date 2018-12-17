@@ -18,7 +18,7 @@ namespace Landscaper {
         }
 
         private void LandscaperForm_Load(object sender, EventArgs e) {
-            Land = new Landscape(512, 384, 4, 255);
+            Land = new Landscape(512, 512);
         }
 
         private void LandscaperForm_Paint(object sender, PaintEventArgs e) {
@@ -29,12 +29,10 @@ namespace Landscaper {
             for (int x = 0; x < Land.Width && x < w; x++) {
                 for (int y = 0; y < Land.Height && y < h; y++) {
                     int ph = Land.GetPointElev(x, y);
-                    if (ph < 64) {
-                        bm.SetPixel(x, y, Color.FromArgb(0, 0, 64 + 2 * ph));
-                    } else if (ph < 192) {
-                        bm.SetPixel(x, y, Color.FromArgb(0, ph, 0));
+                    if (ph < SeaLevelBar.Value) {
+                        bm.SetPixel(x, y, Color.FromArgb(0, 0, 192));
                     } else {
-                        bm.SetPixel(x, y, Color.FromArgb(4 * (ph - 192), ph, 4 * (ph - 192)));
+                        bm.SetPixel(x, y, Color.FromArgb(0, ph, 0));
                     }
                 }
             }
@@ -42,7 +40,11 @@ namespace Landscaper {
         }
 
         private void ReloadBtn_Click(object sender, EventArgs e) {
-            Land = new Landscape(512, 384, 4, 255);
+            Land = new Landscape(512, 512);
+            Invalidate();
+        }
+
+        private void SeaLevelBar_ValueChanged(object sender, EventArgs e) {
             Invalidate();
         }
     }

@@ -54,12 +54,17 @@ namespace Landscaper {
             } else {
                 int splitW = RndGen.Next(width / 4, (3 * width) / 4);
                 int splitH = RndGen.Next(height / 4, (3 * height) / 4);
-                int lowest = Math.Min(Math.Min(topLeftElev, topRightElev),
-                                      Math.Min(bottomLeftElev, bottomRightElev));
-                int highest = Math.Max(Math.Max(topLeftElev, topRightElev),
-                                       Math.Max(bottomLeftElev, bottomRightElev));
-                int diffRange = (highest - lowest) / 4;
-                int splitElev = RndGen.Next(lowest + diffRange, highest - diffRange);
+                int splitElev = 0;
+                if (width > 63 && height > 63) {
+                    splitElev = RndGen.Next(256);
+                } else {
+                    int lowest = Math.Min(Math.Min(topLeftElev, topRightElev),
+                                          Math.Min(bottomLeftElev, bottomRightElev));
+                    int highest = Math.Max(Math.Max(topLeftElev, topRightElev),
+                                           Math.Max(bottomLeftElev, bottomRightElev));
+                    int diffRange = (highest - lowest) / 4;
+                    splitElev = RndGen.Next(lowest + diffRange, highest - diffRange);
+                }
                 int topSplitElev = topLeftElev +
                                    ((topRightElev - topLeftElev) * splitW) / width;
                 int bottomSplitElev = bottomLeftElev +
@@ -88,7 +93,7 @@ namespace Landscaper {
         // fragment are at least equal to minSize, sub-fragments will be
         // recursively generated. The first split point to fragments will have
         // the elevation splitElev. All corners will have the elevation 0.
-        public Landscape(int width, int height, int minSize, int splitElev) {
+        public Landscape(int width, int height, int minSize) {
             Width = width;
             Height = height;
             TopLeftElev = 0;
@@ -104,15 +109,23 @@ namespace Landscaper {
                 int splitW = RndGen.Next(width / 4, (3 * width) / 4);
                 int splitH = RndGen.Next(height / 4, (3 * height) / 4);
                 TopLeft = new Landscape(splitW, splitH, minSize,
-                                        0, 0, 0, splitElev);
+                                        0, 0, 0, 255);
                 TopRight = new Landscape(width - splitW, splitH, minSize,
-                                         0, 0, splitElev, 0);
+                                         0, 0, 255, 0);
                 BottomLeft = new Landscape(splitW, height - splitH, minSize,
-                                           0, splitElev, 0, 0);
+                                           0, 255, 0, 0);
                 BottomRight = new Landscape(width - splitW, height - splitH, minSize,
-                                            splitElev, 0, 0, 0);
+                                            255, 0, 0, 0);
             }
         }
+
+        // Constructs the top level fragment of the landscape and initializes
+        // recursive generating of the sub-fragments with the minimum fragment
+        // size set to 4 - the minimum reasonable value. The first split point
+        // to fragments will have the elevation splitElev. All corners will
+        // have the elevation 0.
+        public Landscape(int width, int height) :
+            this(width, height, 4) { }
 
         // Return the elevation of the given point. Outside of the fragment
         // width and height extrapolates the heights at the corners.
