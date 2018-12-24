@@ -15,10 +15,10 @@ namespace Landscaper {
         // Elevations of the corners of the landscape. Right and Bottom values
         // refer to the points next to the right- and bottom-most points of the
         // landscape.
-        private int TopLeftElev;
-        private int TopRightElev;
-        private int BottomLeftElev;
-        private int BottomRightElev;
+        private readonly int TopLeftElev;
+        private readonly int TopRightElev;
+        private readonly int BottomLeftElev;
+        private readonly int BottomRightElev;
 
         // Width and Height of this landscape fragment.
         public readonly int Width;
@@ -124,8 +124,7 @@ namespace Landscaper {
         // size set to 4 - the minimum reasonable value. The first split point
         // to fragments will have the elevation splitElev. All corners will
         // have the elevation 0.
-        public Landscape(int width, int height) :
-            this(width, height, 4) { }
+        public Landscape(int width, int height) : this(width, height, 4) { }
 
         // Return the elevation of the given point. Outside of the fragment
         // width and height extrapolates the heights at the corners.

@@ -25,12 +25,13 @@
         private void InitializeComponent() {
             this.ReloadBtn = new System.Windows.Forms.Button();
             this.SeaLevelBar = new System.Windows.Forms.TrackBar();
+            this.Show3DBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.SeaLevelBar)).BeginInit();
             this.SuspendLayout();
             // 
             // ReloadBtn
             // 
-            this.ReloadBtn.Location = new System.Drawing.Point(13, 13);
+            this.ReloadBtn.Location = new System.Drawing.Point(0, 0);
             this.ReloadBtn.Name = "ReloadBtn";
             this.ReloadBtn.Size = new System.Drawing.Size(75, 43);
             this.ReloadBtn.TabIndex = 0;
@@ -50,17 +51,29 @@
             this.SeaLevelBar.Value = 64;
             this.SeaLevelBar.ValueChanged += new System.EventHandler(this.SeaLevelBar_ValueChanged);
             // 
+            // Show3DBtn
+            // 
+            this.Show3DBtn.Location = new System.Drawing.Point(0, 50);
+            this.Show3DBtn.Name = "Show3DBtn";
+            this.Show3DBtn.Size = new System.Drawing.Size(75, 43);
+            this.Show3DBtn.TabIndex = 2;
+            this.Show3DBtn.Text = "3D";
+            this.Show3DBtn.UseVisualStyleBackColor = true;
+            this.Show3DBtn.Click += new System.EventHandler(this.Show3DBtn_Click);
+            // 
             // LandscaperForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(678, 644);
+            this.Controls.Add(this.Show3DBtn);
             this.Controls.Add(this.SeaLevelBar);
             this.Controls.Add(this.ReloadBtn);
             this.DoubleBuffered = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "LandscaperForm";
             this.Text = "Landscaper";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.LandscaperForm_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.LandscaperForm_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.SeaLevelBar)).EndInit();
@@ -73,6 +86,7 @@
 
         private System.Windows.Forms.Button ReloadBtn;
         private System.Windows.Forms.TrackBar SeaLevelBar;
+        private System.Windows.Forms.Button Show3DBtn;
     }
 }
 
